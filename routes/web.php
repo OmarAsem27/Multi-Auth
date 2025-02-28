@@ -9,23 +9,21 @@ Route::get('/', function () {
 
 
 
-Route::prefix('user')->group(function () {
+Route::prefix('user')->middleware('guest:web')->group(function () {
 
     Route::get('login', [UserAuthentication::class, 'create']);
-    Route::post('login', [UserAuthentication::class, 'authenticate'])->name('user.login');
+    Route::post('login', [UserAuthentication::class, 'authenticate'])->name('login');
 
 });
 
 
-Route::prefix('user')->middleware('auth:web')->group(function () {
-
+Route::prefix('user')->middleware(['auth:web'])->group(function () {
 
     Route::post('logout', [UserAuthentication::class, 'destroy'])->name('user.logout');
 
     Route::get('/dashboard', function () {
         return view('user.dashboard-user');
     })->name('user.dashboard');
-
 
 });
 

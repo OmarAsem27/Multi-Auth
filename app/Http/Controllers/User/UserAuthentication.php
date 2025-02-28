@@ -39,6 +39,6 @@ class UserAuthentication extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('user.login');
+        return redirect()->route('login');
     }
 }
