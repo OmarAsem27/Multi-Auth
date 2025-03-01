@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::prefix('admin')->middleware('guest:admin')->group(function () {
+Route::prefix('admin')->middleware('guest:admin,student,web')->group(function () {
 
     Route::get('login', [AdminAuthentication::class, 'create']);
     Route::post('login', [AdminAuthentication::class, 'authenticate'])->name('admin.login');

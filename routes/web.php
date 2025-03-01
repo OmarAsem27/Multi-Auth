@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 
 
-Route::prefix('user')->middleware('guest:web')->group(function () {
+Route::prefix('user')->middleware('guest:web,admin,student')->group(function () {
 
     Route::get('login', [UserAuthentication::class, 'create']);
     Route::post('login', [UserAuthentication::class, 'authenticate'])->name('login');
